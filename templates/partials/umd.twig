@@ -1,0 +1,70 @@
+CookieConsent.run({
+
+    categories: {
+        necessary: {
+            enabled: true,  // this category is enabled by default
+            readOnly: true  // this category cannot be disabled
+        },
+        analytics: {
+			readOnly: false,
+            autoClear: {
+                cookies: [
+                    {
+                        name: /^(_ga)/      //regex
+                    },
+                    {
+                        name: '_gid'        //string
+                    }
+                ]
+            }
+		}
+    },
+
+    language: {
+        default: 'en',
+        translations: {
+            en: {
+                consentModal: {
+                    title: '{% if content.title %}{{ content.title }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.CONTENT_TITLE'|t }}{% endif %}',
+                    description: '{% if content.msg %}{{ content.msg }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.CONTENT_MSG'|t }}{% endif %}',
+                    acceptAllBtn: '{% if content.accept %}{{ content.accept }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.CONTENT_ACCEPT_ALL'|t }}{% endif %}',
+                    acceptNecessaryBtn: '{% if content.reject %}{{ content.reject }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.CONTENT_REJECT_ALL'|t }}{% endif %}',
+                    showPreferencesBtn: '{% if content.customize %}{{ content.customize }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.CONTENT_CUSTOMIZE'|t }}{% endif %}',
+                    footer: `
+                        <a href="{% if links.legal.imprint|t %}{{ grav.language.active }}{{ links.legal.imprint }}{% else %}/yourcustomimprintlink{% endif %}">
+                            {% if content.imprint_text %}{{ content.imprint_text }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.IMPRINT_TITLE'|t }}{% endif %}
+                        </a>
+                        <a href="{% if links.legal.privacy %}{{ grav.language.active }}{{ links.legal.privacy }}{% else %}/yourcustomprivacypolicylink{% endif %}">
+                            {% if content.privacy_text %}{{ content.privacy_text }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.PRIVACY_TITLE'|t }}{% endif %}
+                        </a>
+                    `
+                },
+                preferencesModal: {
+                    title: '{% if content.manage_preferences_title %}{{ content.manage_preferences_title }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.MANAGE_PREFERENCES_TITLE'|t }}{% endif %}',
+                    acceptAllBtn: '{% if content.accept %}{{ content.accept }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.CONTENT_ACCEPT_ALL'|t }}{% endif %}',
+                    acceptNecessaryBtn: '{% if content.accept_necessary %}{{ content.accept_necessary }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.CONTENT_ACCEPT_NECESSARY'|t }}{% endif %}',
+                    savePreferencesBtn: '{% if content.accept_selection %}{{ content.accept_selection }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.CONTENT_ACCEPT_SELECTION'|t }}{% endif %}',
+                    closeIconLabel: 'Close modal',
+                    sections: [
+                        {
+                            title: '{% if content.manage_preferences_subtitle %}{{ content.manage_preferences_subtitle }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.MANAGE_PREFERENCES_SUBTITLE'|t }}{% endif %}',
+                            description: '{% if content.manage_preferences_msg %}{{ content.manage_preferences_msg }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.MANAGE_PREFERENCES_MSG'|t }}{% endif %}',
+                        },
+                        {
+                            title: '{% if content.manage_preferences_strictly_necessary %}{{ content.manage_preferences_strictly_necessary }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.MANAGE_PREFERENCES_STRICTLY_NECESSARY'|t }}{% endif %}',
+                            description: '{% if content.manage_preferences_strictly_necessary_desc %}{{ content.manage_preferences_strictly_necessary_desc }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.MANAGE_PREFERENCES_STRICTLY_NECESSARY_DESC'|t }}{% endif %}',
+
+                            //this field will generate a toggle linked to the 'necessary' category
+                            linkedCategory: 'necessary'
+                        },
+                        {
+                            title: '{% if content.manage_preferences_custom %}{{ content.manage_preferences_custom }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.MANAGE_PREFERENCES_CUSTOM'|t }}{% endif %}',
+                            description: '{% if content.manage_preferences_custom_desc %}{{ content.manage_preferences_custom_desc }}{% else %}{{ 'PLUGINS.COOKIE_CONSENT_V3.MANAGE_PREFERENCES_CUSTOM_DESC'|t }}{% endif %}',
+                            linkedCategory: 'analytics'
+                        }
+                    ]
+                }
+            }
+        }
+    }
+});

@@ -1,0 +1,203 @@
+name: Cookie Consent V3
+slug: cookie-consent-v3
+type: plugin
+version: 0.9.0
+description: CookieConsent v3 GDPR compliant
+icon: plug
+author:
+  name: Hanjo Schumacher
+  email: grav@hanjo.dev
+homepage: https://github.com/mercredo/grav-plugin-cookie-consent-v3
+keywords: grav, plugin, cookie, consent, eu, law, policy, gdpr
+bugs: https://github.com/mercredo/grav-plugin-cookie-consent-v3/issues
+docs: https://github.com/mercredo/grav-plugin-cookie-consent-v3/blob/develop/README.md
+license: MIT
+appreciations: used a fork of https://github.com/naucon/grav-plugin-cookieconsent
+
+dependencies:
+  - { name: grav, version: '>=1.6.0' }
+
+form:
+  validation: strict
+  fields:
+    basics:
+      type: section
+      title: Basics
+      underline: true
+
+    enabled:
+      type: toggle
+      label: Plugin status
+      highlight: 1
+      default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
+
+    cdn.enabled:
+      type: toggle
+      label: CDN
+      help: "Include JavaScript and CSS files from official CDN or local."
+      highlight: 1
+      default: 1
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
+
+    content:
+      type: section
+      title: Content
+      underline: true
+
+    overwrite_languages:
+      type: toggle
+      label: Use custom texts
+      help: Allows use of custom texts (text fields will occur atfer click on 'save'). Empty fields will still use language fallback.
+      highlight: 1
+      default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
+
+    my_conditional:
+      type: conditional
+      condition: config.plugins['cookie-consent-v3'].overwrite_languages
+      fields:
+        content.title:
+          type: text
+          label: Title
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.CONTENT_TITLE
+          validate:
+            type: text
+        content.msg:
+          type: textarea
+          label: Message
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.CONTENT_MSG
+          rows: 4
+          validate:
+            type: textarea
+        content.accept:
+          type: text
+          label: Accept button text
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.CONTENT_ACCEPT_ALL
+          validate:
+            type: text
+        content.accept_necessary:
+          type: text
+          label: Accept necessary button text
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.CONTENT_ACCEPT_NECESSARY
+          validate:
+            type: text
+        content.accept_selection:
+          type: text
+          label: Accept current selection button text
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.CONTENT_ACCEPT_SELECTION
+          validate:
+            type: text
+        content.reject:
+          type: text
+          label: Reject button text
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.CONTENT_REJECT_ALL
+          validate:
+            type: text
+        content.customize:
+          type: text
+          label: Customize button text
+          help: Opens preferences window
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.CONTENT_CUSTOMIZE
+          validate:
+            type: text
+        content.imprint_text:
+          type: text
+          label: Imprint link text
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.IMPRINT_TITLE
+          validate:
+            type: text
+        content.privacy_text:
+          type: text
+          label: Privacy policy link text
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.PRIVACY_TITLE
+          validate:
+            type: text
+        preferences_spacer:
+          type: spacer
+          underline: true
+        content.manage_preferences_title:
+          type: text
+          label: Preferences title
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.MANAGE_PREFERENCES_TITLE
+          validate:
+            type: text
+        content.manage_preferences_subtitle:
+          type: text
+          label: Preferences subtitle
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.MANAGE_PREFERENCES_SUBTITLE
+          validate:
+            type: text
+        content.manage_preferences_msg:
+          type: textarea
+          label: Preferences text
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.MANAGE_PREFERENCES_MSG
+          rows: 4
+          validate:
+            type: textarea
+        preferences_spacer_2:
+          type: spacer
+          underline: true
+        content.manage_preferences_strictly_necessary:
+          type: text
+          label: Preferences strictly necessary
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.MANAGE_PREFERENCES_STRICTLY_NECESSARY
+          validate:
+            type: text
+        content.manage_preferences_strictly_necessary_desc:
+          type: textarea
+          label: Preferences strictly necessary description
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.MANAGE_PREFERENCES_STRICTLY_NECESSARY_DESC
+          rows: 4
+          validate:
+            type: textarea
+        content.manage_preferences_custom:
+          type: text
+          label: Preferences custom
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.MANAGE_PREFERENCES_CUSTOM
+          validate:
+            type: text
+        content.manage_preferences_custom_desc:
+          type: textarea
+          label: Preferences custom description
+          placeholder: PLUGINS.COOKIE_CONSENT_V3.MANAGE_PREFERENCES_CUSTOM_DESC
+          rows: 4
+          validate:
+            type: textarea
+
+    links:
+      type: section
+      title: Links
+      underline: true
+
+    links.legal.imprint:
+      type: pages
+      size: medium
+      classes: fancy
+      label: Imprint page
+      show_all: true
+      show_modular: false
+      show_root: false
+      help: Default imprint page
+
+    links.legal.privacy:
+      type: pages
+      size: medium
+      classes: fancy
+      label: Privacy policy page
+      show_all: true
+      show_modular: false
+      show_root: false
+      help: Default privacy policy page

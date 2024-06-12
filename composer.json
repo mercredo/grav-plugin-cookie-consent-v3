@@ -1,0 +1,24 @@
+{
+  "name": "mercredo/cookie-consent-v3",
+  "type": "grav-plugin",
+  "description": "CookieConsent v3",
+  "keywords": ["plugin"],
+  "homepage": "https://github.com/mercredo/grav-plugin-cookie-consent-v3",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Hanjo Schumacher",
+      "email": "grav@hanjo.dev",
+      "role": "full-stack dev"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Grav\\Plugin\\CookieConsentV3\\": "classes/"
+    },
+    "classmap":  ["cookie-consent-v3.php"]
+  }
+}
