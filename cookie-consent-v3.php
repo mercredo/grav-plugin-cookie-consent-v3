@@ -77,9 +77,13 @@ class CookieConsentV3Plugin extends Plugin
             $this->grav['assets']->addJsModule("plugin://cookie-consent-v3/assets/cookieconsent.umd.js");
         }
 
-        $this->grav['assets']->addInlineJsModule($twig->twig->render('partials/umd.twig', array(
+        /**
+         * add CookieConsent v3 lib
+         */
+        $this->grav['assets']->addInlineJsModule($twig->twig->render('partials/umd.js.twig', [
             'content' => $useCustomTexts?$this->config->get('plugins.cookie-consent-v3.content'):[],
-            'links' => $this->config->get('plugins.cookie-consent-v3.links')
-        )));
+            'links' => $this->config->get('plugins.cookie-consent-v3.links'),
+            'theme' => $this->config->get('plugins.cookie-consent-v3.theme')
+        ]));
     }
 }

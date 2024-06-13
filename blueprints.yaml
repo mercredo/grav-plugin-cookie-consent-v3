@@ -65,7 +65,7 @@ form:
       validate:
         type: bool
 
-    my_conditional:
+    overwrite_lang_conditional:
       type: conditional
       condition: config.plugins['cookie-consent-v3'].overwrite_languages
       fields:
@@ -201,3 +201,19 @@ form:
       show_modular: false
       show_root: false
       help: Default privacy policy page
+
+    theme:
+      type: section
+      title: Theme
+      underline: true
+
+    theme.darkmode:
+      type: toggle
+      label: Darkmode 
+      highlight: 1
+      default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
