@@ -22,16 +22,11 @@ CookieConsent.run({
 
     guiOptions: {
         consentModal: {
-            layout: 'box',
-            position: 'bottom right',
+            layout: '{% if theme.layout.type %}{{ theme.layout.type }}{% else %}box{% endif %} {% if theme.layout.variant %}{{ theme.layout.variant }}{% else %}inline{% endif %}',
+            position: '{% if theme.position.y %}{{ theme.position.y }}{% else %}bottom{% endif %} {% if theme.position.x %}{{ theme.position.x }}{% else %}right{% endif %}',
             flipButtons: false,
             equalWeightButtons: true
-        },
-        {# preferencesModal: {
-            layout: 'box',
-            flipButtons: false,
-            equalWeightButtons: true
-        } #}
+        }
     },
 
     language: {

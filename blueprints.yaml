@@ -217,3 +217,48 @@ form:
         0: Disabled
       validate:
         type: bool
+
+    theme.layout.type:
+      type: toggle
+      label: Layout
+      default: box
+      highlight: box
+      options:
+        box: box        
+        cloud: cloud
+        bar: bar        
+      validate:
+        type: string
+
+    theme.layout.variant:
+      type: toggle
+      default: inline
+      highlight: inline
+      options:
+        inline: inline        
+        wide: wide      
+      validate:
+        type: string
+   
+    theme.position.x:
+      type: toggle
+      label: Position
+      default: right
+      highlight: right
+      options:
+        left: left        
+        center: center
+        right: right
+      validate:
+        type: string
+
+    theme.position.y:
+      type: toggle
+      default: bottom
+      highlight: bottom
+      options:
+        top: top        
+        middle: middle
+        bottom: bottom
+      validate:
+        type: string
